@@ -26,6 +26,12 @@ android {
             // Sideloaded over ADB, never published: sign with the debug key so it installs over a debug build.
             signingConfig signingConfigs.debug
         }
+
+        // Isolated build for manual launching; inherits release settings.
+        // Uses src/manualOnly/AndroidManifest.xml.
+        manualOnly {
+            initWith release
+        }
     }
 
     packagingOptions {

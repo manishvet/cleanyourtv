@@ -73,6 +73,15 @@ jobs:
           name: cleanyourtv-launcher
           path: launcher/app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
+      - name: Build manual-only launcher
+        working-directory: launcher
+        run: ./gradlew --no-daemon assembleManualOnly
+      - name: Upload manual-only APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: cleanyourtv-launcher-manual-only
+          path: launcher/app/build/outputs/apk/manualOnly/app-manualOnly.apk
+          if-no-files-found: error
       - name: The launcher stays small
         run: |
           size=$(stat -c %s launcher/app/build/outputs/apk/release/app-release.apk)
